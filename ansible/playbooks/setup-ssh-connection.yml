@@ -25,10 +25,10 @@
       args:
         executable: /bin/bash
       
-      #authorized_key:
-      #user: ansible
-      #state: present
-      #key: "{{ lookup('file', '/home/anisa/Ansible_Course-foroughfork/files/.secrets/ansible-course-ssh-key') }}"
+       #authorized_key:
+       #user: ansible
+       #state: present
+       #key: "{{ lookup('file', '/home/anisa/Ansible_Course-foroughfork/files/.secrets/ansible-course-ssh-key') }}"
 
     - name: Add ansible user o sudoers
       copy:
