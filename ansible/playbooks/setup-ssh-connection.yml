@@ -1,0 +1,40 @@
+- hosts: all
+  gather_facts: true
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: create ansible user with home directory
+      user:
+        name: ansible
+        home : /home/ansible
+        create_home: true
+    - name: create .ssh directory
+      file:
+        path: /home/ansible/.ssh
+        state: directory
+        owner: ansible
+        group: ansible
+        mode: '0700'
+
+    - name: Add authorized key for ansible user
+      
+      shell: |
+        echo "{{ lookup('file', '/home/anisa/Ansible_Course-foroughfork/files/.secrets/ansible-course-ssh-key') }}" >> /home/ansible/.ssh/authorized_keys
+        chown ansible:ansible /home/ansible/.ssh/authorized_keys
+        chmod 600 /home/ansible/.ssh/authorized_keys
+      args:
+        executable: /bin/bash
+      
+      #authorized_key:
+      #user: ansible
+      #state: present
+      #key: "{{ lookup('file', '/home/anisa/Ansible_Course-foroughfork/files/.secrets/ansible-course-ssh-key') }}"
+
+    - name: Add ansible user o sudoers
+      copy:
+        src: /home/anisa/Ansible_Course-foroughfork/files/ansible-sudoers
+        dest: /etc/sudoers.d/ansible
+        mode: '0440'
+        owner: root
+        group: root        
+
