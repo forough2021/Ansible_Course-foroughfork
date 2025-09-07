@@ -19,7 +19,7 @@
     - name: Add authorized key for ansible user
       
       shell: |
-        echo "{{ lookup('file', '/home/anisa/Ansible_Course-foroughfork/files/.secrets/ansible-course-ssh-key') }}" >> /home/ansible/.ssh/authorized_keys
+        echo "{{ lookup('file', '/home/anisa/Ansible_Course-foroughfork/files/.secrets/ansible_Course_ssh_key') }}" >> /home/ansible/.ssh/authorized_keys
         chown ansible:ansible /home/ansible/.ssh/authorized_keys
         chmod 600 /home/ansible/.ssh/authorized_keys
       args:

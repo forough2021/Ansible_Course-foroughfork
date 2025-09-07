@@ -1,0 +1,14 @@
+- hosts: all
+  gather_facts: true
+  tasks: 
+
+    - name: test ping module
+      ping: 
+
+    - name: test debug module
+      debug:
+              msg: "just a test message"
+    - name: test debug module
+      debug:
+              msg: " {{ ansible_facts.env }} "
+              
